@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>$INVENTER Banner</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+  .banner {
+    width: 1500px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #1a0a2e 0%, #2d1b4e 40%, #1a0a2e 100%);
+    font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  }
+
+  /* Stars */
+  .banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(1px 1px at 100px 50px, #fff8, transparent),
+      radial-gradient(1px 1px at 300px 120px, #fff6, transparent),
+      radial-gradient(1.5px 1.5px at 500px 30px, #ffd70088, transparent),
+      radial-gradient(1px 1px at 700px 90px, #fff5, transparent),
+      radial-gradient(1px 1px at 900px 60px, #fff7, transparent),
+      radial-gradient(1.5px 1.5px at 1100px 40px, #fff6, transparent),
+      radial-gradient(1px 1px at 1300px 100px, #ffd70066, transparent),
+      radial-gradient(1px 1px at 200px 150px, #fff4, transparent),
+      radial-gradient(1px 1px at 600px 140px, #fff5, transparent),
+      radial-gradient(1px 1px at 1000px 130px, #fff4, transparent),
+      radial-gradient(1px 1px at 1400px 70px, #fff6, transparent),
+      radial-gradient(1px 1px at 150px 20px, #fff3, transparent),
+      radial-gradient(1px 1px at 450px 80px, #fff4, transparent),
+      radial-gradient(1px 1px at 800px 15px, #fff5, transparent),
+      radial-gradient(1px 1px at 1200px 110px, #fff3, transparent);
+    z-index: 0;
+  }
+
+  /* Curtains */
+  .curtain-left, .curtain-right {
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 5;
+  }
+  .curtain-left {
+    left: 0;
+    background: linear-gradient(90deg, #8b0000 0%, #a01010 60%, #8b000000 100%);
+    border-right: 3px solid #6b0000;
+  }
+  .curtain-right {
+    right: 0;
+    background: linear-gradient(-90deg, #8b0000 0%, #a01010 60%, #8b000000 100%);
+    border-left: 3px solid #6b0000;
+  }
+  .curtain-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(180deg, #8b0000, #8b000000);
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .curtain-top::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 100px;
+    right: 100px;
+    height: 25px;
+    background:
+      radial-gradient(ellipse 60px 25px at 60px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 180px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 300px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 420px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 540px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 660px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 780px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 900px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 1020px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 1140px 0px, #8b0000 49%, transparent 50%),
+      radial-gradient(ellipse 60px 25px at 1260px 0px, #8b0000 49%, transparent 50%);
+    transform: translateY(100%);
+  }
+
+  /* Stage floor */
+  .stage {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: linear-gradient(180deg, #5c3a1e 0%, #4a2e15 30%, #3d2510 100%);
+    z-index: 1;
+    border-top: 4px solid #7a4f2a;
+  }
+  .stage::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #9a6f4a44, transparent);
+  }
+  /* Stage planks */
+  .stage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 148px, #3a200a55 148px, #3a200a55 150px);
+  }
+
+  /* Spotlight glow */
+  .spotlight {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .spotlight-1 {
+    top: 0; left: 300px;
+    width: 400px; height: 400px;
+    background: radial-gradient(ellipse at center, #ffd70011 0%, transparent 70%);
+  }
+  .spotlight-2 {
+    top: 0; right: 300px;
+    width: 400px; height: 400px;
+    background: radial-gradient(ellipse at center, #ffd70011 0%, transparent 70%);
+  }
+
+  /* Podium - right side where dean hands diploma */
+  .podium {
+    position: absolute;
+    bottom: 140px;
+    right: 200px;
+    width: 100px;
+    height: 60px;
+    background: linear-gradient(180deg, #6b3a1a, #4a2510);
+    border: 2px solid #7a4f2a;
+    border-bottom: none;
+    z-index: 3;
+    border-radius: 4px 4px 0 0;
+  }
+  .podium::before {
+    content: '$INVENTER';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffd700;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  /* Banner text */
+  .banner-text {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    text-align: center;
+  }
+  .banner-text h1 {
+    color: #ffd700;
+    font-size: 52px;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 0 0 20px #ffd70044;
+    letter-spacing: 6px;
+  }
+  .banner-text p {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 4px;
+    opacity: 0.7;
+    letter-spacing: 3px;
+  }
+
+  /* Character slots - the graduation line */
+  .grad-line {
+    position: absolute;
+    bottom: 140px;
+    left: 0;
+    right: 0;
+    height: 220px;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 160px;
+  }
+
+  .character-slot {
+    width: 140px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .character-slot img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(2px 4px 6px #00000088);
+  }
+
+  /* Placeholder when no image */
+  .character-slot .placeholder {
+    width: 100px;
+    height: 160px;
+    border: 3px dashed #ffd70066;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd70088;
+    font-size: 11px;
+    text-align: center;
+    padding: 8px;
+    background: #ffffff08;
+  }
+
+  /* Walking direction arrow on stage */
+  .walk-arrow {
+    position: absolute;
+    bottom: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffd70044;
+    font-size: 30px;
+    letter-spacing: 20px;
+    z-index: 2;
+  }
+
+  /* F diploma floating near podium */
+  .diploma {
+    position: absolute;
+    bottom: 210px;
+    right: 175px;
+    z-index: 4;
+    background: #f5f0dc;
+    border: 2px solid #c4a44a;
+    border-radius: 3px;
+    padding: 6px 12px;
+    transform: rotate(-8deg);
+    box-shadow: 2px 3px 8px #00000066;
+  }
+  .diploma span {
+    font-size: 32px;
+    font-weight: bold;
+    color: #cc0000;
+    font-family: 'Times New Roman', serif;
+  }
+  .diploma::after {
+    content: 'diploma';
+    display: block;
+    font-size: 7px;
+    color: #888;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <!-- Background elements -->
+  <div class="curtain-left"></div>
+  <div class="curtain-right"></div>
+  <div class="curtain-top"></div>
+  <div class="spotlight spotlight-1"></div>
+  <div class="spotlight spotlight-2"></div>
+  <div class="stage"></div>
+
+  <!-- Title -->
+  <div class="banner-text">
+    <h1>$INVENTER</h1>
+    <p>CLASS OF F</p>
+  </div>
+
+  <!-- Graduation line - replace placeholder divs with your character <img> tags -->
+  <div class="grad-line">
+    <!-- Character 1: waiting in line (lightbulb still on head) -->
+    <div class="character-slot">
+      <!-- <img src="character1.png" alt="inventer"> -->
+      <div class="placeholder">waiting in line<br>💡 on head</div>
+    </div>
+
+    <!-- Character 2: walking up -->
+    <div class="character-slot">
+      <!-- <img src="character2.png" alt="inventer"> -->
+      <div class="placeholder">walking up<br>💡 on head</div>
+    </div>
+
+    <!-- Character 3: reaching up to remove lightbulb -->
+    <div class="character-slot">
+      <!-- <img src="character3.png" alt="inventer"> -->
+      <div class="placeholder">removing<br>💡 from head</div>
+    </div>
+
+    <!-- Character 4: handing lightbulb over, receiving diploma -->
+    <div class="character-slot">
+      <!-- <img src="character4.png" alt="inventer"> -->
+      <div class="placeholder">handing 💡<br>getting 📜 F</div>
+    </div>
+
+    <!-- Character 5: walking away proudly with F diploma -->
+    <div class="character-slot">
+      <!-- <img src="character5.png" alt="inventer"> -->
+      <div class="placeholder">walking away<br>proud with F 📜</div>
+    </div>
+
+    <!-- Character 6: celebrating off stage -->
+    <div class="character-slot">
+      <!-- <img src="character6.png" alt="inventer"> -->
+      <div class="placeholder">celebrating<br>🎉 F diploma</div>
+    </div>
+  </div>
+
+  <!-- Podium -->
+  <div class="podium"></div>
+
+  <!-- F Diploma floating near podium -->
+  <div class="diploma"><span>F</span></div>
+
+  <!-- Direction indicator -->
+  <div class="walk-arrow">→ → →</div>
+</div>
+
+</body>
+</html>
