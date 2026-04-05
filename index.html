@@ -236,13 +236,13 @@
     display: flex;
     gap: 16px;
     width: max-content;
-    animation: scrollMemes 40s linear infinite;
+    animation: scrollMemes 60s linear infinite;
     padding: 10px 0;
   }
-  .meme-track:hover { animation-play-state: paused; }
+  .meme-track:hover { animation-play-state: running; }
   @keyframes scrollMemes {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(calc(-50% - 8px)); }
   }
   .meme-card {
     flex: 0 0 260px;
@@ -468,7 +468,6 @@ for(let i=0;i<25;i++){const d=document.createElement('div');d.className='confett
     <div class="meme-card"><video src="f4.mp4" autoplay muted loop playsinline></video><div class="meme-label">INVENTUR #4</div></div>
     <div class="meme-card"><video src="f5.mp4" autoplay muted loop playsinline></video><div class="meme-label">INVENTUR #5</div></div>
   </div>
-</section>
 
 <!-- MARQUEE 3 -->
 <div class="marquee-bar">
