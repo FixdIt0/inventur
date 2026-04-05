@@ -1,0 +1,4 @@
+{
+  "name": "inventur",
+  "scripts": { "start": "npx serve -s . -l $PORT" }
+}
